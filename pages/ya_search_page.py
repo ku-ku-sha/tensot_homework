@@ -24,7 +24,7 @@ class YaSearchPage(BasePage):
             self.search_results.is_present()
             current_url = self.get_current_url()
             assert 'search' in current_url, 'No "search" in current url'
-        except (Exception and not AssertionError) as error:
+        except Exception as error:
             return False, 'No search results. Error: {error}'
         return True
 
