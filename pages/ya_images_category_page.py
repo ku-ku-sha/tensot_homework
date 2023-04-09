@@ -23,7 +23,7 @@ class YaImagesCategoryPage(BasePage):
             category_name = YIL.FIRST_CATEGORY_NAME_TEXT
             search_field_text = self.search_field.get_text()
             assert category_name == search_field_text, '\nNo category name in search field.'
-        except (Exception and not AssertionError) as error:
+        except Exception as error:
             assert False, f'category_name_is_in_search_field Error: {error}'
         return True
 
