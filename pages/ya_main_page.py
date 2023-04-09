@@ -1,8 +1,9 @@
+import pytest
+
 from pages.base_page import BasePage
 from pages.base_element import BaseElement
 from pages.locators import YaMainPageLocators as YL
-from selenium.common import exceptions
-from termcolor import cprint
+
 
 
 class YaMainPage(BasePage):
@@ -21,17 +22,17 @@ class YaMainPage(BasePage):
     def no_old_menu_btn(self):
         '''The function check the absence of the old menu button '''
         try:
-            self.old_menu_btn.is_present()
-        except TimeoutError:
-            assert True
-        assert False, f'The old menu button is visible'
+            assert not self.old_menu_btn.is_present(), 'The old menu button is on page'
+        except AssertionError:
+            pass
+
 
     def menu_btn_is_present(self):
         '''The function checks the menu button is present on a page after clicking on the search field'''
         try:
             self.search_field.click_on()
             self.menu_btn.is_present()
-        except (Exception and not AssertionError) as error:
+        except (TypeError, AssertionError) as error:
             assert False, f"\nThe menu button isn't present. Error: {error}"
         return True
 
